@@ -1,5 +1,6 @@
 package Floristeria;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -106,24 +107,17 @@ public class App {
                     System.out.println("Primero crea una floristeria");
                     break;
                 }
-				System.out.println("Creando ticket de compra...");
-			    List<Producto> productosComprados = new ArrayList<>();
-			    int opcionProducto = 0;
-			    do {
-			        System.out.println("Seleccione un producto para agregar al ticket:");
-			        floristeria.showStock();
-			        opcionProducto = pedirInt("Qué producto es?");
-			        if (opcionProducto > 0 && opcionProducto <= floristeria.stock.size()) {
-			            Producto producto = floristeria.showStock().get(opcionProducto - 1);
-			            productosComprados.add(producto);
-			            System.out.println(producto.getDescripcion() + " agregado al ticket.");
-			        } else {
-			            System.out.println("Opción inválida. Intente nuevamente.");
-			        }
-			    } while (opcionProducto != 0);
-			    Ticket ticket = floristeria.crearTicket(productosComprados);
-			    System.out.println("Ticket de compra creado:");
-			    System.out.println(ticket.toString());
+				List<Producto> productosComprados = new ArrayList<>();
+				String nomProducto = pedirString("Ingresa el nombre del producto que quieres comprar");
+				Producto producto = floristeria.buscarProducto(nomProducto);
+
+				if (producto != null) {
+				    productosComprados.add(producto);
+				    floristeria.crearTicket(productosComprados);
+				} else {
+				    System.out.println("El producto no existe en la floristería.");
+				}
+
 				break;
 			case 11:
 				if (floristeria == null) {

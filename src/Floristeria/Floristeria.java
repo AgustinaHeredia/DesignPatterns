@@ -45,12 +45,11 @@ public class Floristeria {
     }
 
     public Ticket crearTicket(List<Producto> productosComprados) {
-        Ticket ticket = new TicketBuilder()
-            .agregarProducto(productosComprados.get(0))
-            .agregarProducto(productosComprados.get(1))
-            .agregarProducto(productosComprados.get(2))
-            .build();
-
+    	TicketBuilder builder = new TicketBuilder();
+        for (Producto producto : productosComprados) {
+            builder.agregarProducto(producto);
+        }
+        Ticket ticket = builder.build();
         tickets.add(ticket);
         return ticket;
     }
@@ -75,7 +74,7 @@ public class Floristeria {
     }
 
     private void cargarStock() {
-        try (BufferedReader br = new BufferedReader(new FileReader(nombre + ".txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("/Users/agustinaheredia/Documents/eclipse-workspace/S3Tasca3N1AgustinaHeredia/src/Floristeria/floristeria.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] partes = line.split(",");
@@ -110,7 +109,7 @@ public class Floristeria {
     }
 
     private void actualizarStock() {
-        try (FileWriter fw = new FileWriter(nombre + ".txt")) {
+        try (FileWriter fw = new FileWriter("/Users/agustinaheredia/Documents/eclipse-workspace/S3Tasca3N1AgustinaHeredia/src/Floristeria/floristeria.txt")) {
             for (Producto producto : stock) {
                 String tipo = "";
                 String atributoExtra = "";
@@ -173,4 +172,13 @@ public class Floristeria {
 	    }
 	    System.out.println("No se encontró ninguna Decoración con el nombre: " + nombre);
 	}
+	public Producto buscarProducto(String nombre) {
+	    for (Producto producto : stock) {
+	        if (producto.getDescripcion().equalsIgnoreCase(nombre)) {
+	            return producto;
+	        }
+	    }
+	    return null; 
+	}
+
 }

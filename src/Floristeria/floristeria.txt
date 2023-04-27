@@ -1,0 +1,8 @@
+flor,rosa,5.0,rojo
+arbol,abeto,20.0,2
+decoracion,jarron,10.0,madera
+flor,margarita,3.0,blanco
+flor,orquidea,9.0,lila
+arbol,olivo,24.0,1
+decoracion,maceta,12.0,plastico
+flor,tulipan,3.0,amarillo

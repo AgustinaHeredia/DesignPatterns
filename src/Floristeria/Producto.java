@@ -16,6 +16,9 @@ public abstract class Producto {
     public double getPrecio() {
         return precio;
     }
-
+    @Override
+    public String toString() {
+        return "Producto: " + descripcion + ", precio: " + precio  + "]";
+    }
    
 }
